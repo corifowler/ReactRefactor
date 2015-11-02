@@ -14,7 +14,7 @@ $.ajaxSetup({
 });
 
 let todos = new TodoCollection();
-
+console.log(todos);
 todos.fetch().then(function() {
   
   $('.wrapper').html(new TodoView(todos).render().$el);
