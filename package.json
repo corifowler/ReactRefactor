@@ -33,10 +33,13 @@
   "dependencies": {
     "backbone": "^1.2.3",
     "font-awesome": "^4.4.0",
+    "gulp": "^3.9.0",
     "jquery": "^2.1.4",
     "jquery-serializejson": "^2.6.2",
     "moment": "^2.10.6",
     "normalize.css": "^3.0.3",
+    "react": "^0.14.2",
+    "react-dom": "^0.14.2",
     "underscore": "^1.8.3"
   }
 }
