@@ -2,7 +2,8 @@ import React from 'react';
 
 export default React.createClass({
 
-  clearClick() {
+  clearClick(event) {
+    event.preventDefault();
     this.props.onClearComplete();
   },
 

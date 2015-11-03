@@ -14,7 +14,5 @@ let el = document.querySelector('.app');
 let todos = new TodoCollection();
 
 todos.fetch().then(() => {  
-  ReactDom.render(
-    <ToDoView/>
-  );
+  ReactDom.render(<ToDoView/>, this.el);
 });

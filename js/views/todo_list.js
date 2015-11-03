@@ -2,7 +2,10 @@ import React from 'react';
 
 export default React.createClass({
 
-  markComplete() {
+  markComplete(event) {
+    event.preventDefault();
+    // let completedTask = event.currentTarget;
+    // completedTask.collection.get(id);
     this.props.onMarkComplete();
   },
 

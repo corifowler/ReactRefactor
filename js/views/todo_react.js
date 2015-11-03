@@ -1,5 +1,8 @@
 import React from 'react';
 
+import {TodoModel} from './resources';
+import {TodoCollection} from './resources';
+
 import AddTask from './todo_input';
 import ToDoList from './todo_list';
 
@@ -13,9 +16,17 @@ export default React.createClass({
         </header>
         <main>
           <AddTask
-            onAddClick={() => alert('want to add')}/>
+            onAddClick={() => {
+              let newTask = document.querySelector('.fa-plus');
+              let taskModel = new TodoModel({
+                title: newTask
+              });
+              taskModel.save().then(() => {
+                location.reload(true);
+              });
+            }}/>
           <ToDoList
-            onMarkComplete={() => alert('finished!')}/>
+            onMarkComplete={() => {}}/>
         </main>
         <footer>
           <ClearButton 
