@@ -3,14 +3,14 @@ import React from 'react';
 export default React.createClass({
 
   submitItem() {
-    this.props.addClick();
+    this.props.onAddClick();
   },
 
   render() {
-    return(
-      <form className="todo-add">
-        <input type="text" name="title" placeholder="Add something"/>
-        <button onClick={this.submitItem}><i className="fa fa-plus"/></button>
+    return (
+      <form className='todo-add'>
+        <input type='text' name='title' placeholder='Add something'/>
+        <button onClick={this.submitItem}><i className='fa fa-plus'/></button>
       </form>
     );
   }
