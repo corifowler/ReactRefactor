@@ -6,7 +6,7 @@ import moment from 'moment';
 import Backbone from 'backbone';
 
 import './ajax_setup';
-import {ToDoView} from './views';
+import ToDoView from './todo_react';
 import {TodoCollection} from './resources';
 
 let el = document.querySelector('.app');

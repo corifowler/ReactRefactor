@@ -2,10 +2,15 @@ import React from 'react';
 
 export default React.createClass({
 
+  getInitialState() {
+    return (
+      {completed: false}
+    );
+  },
+
   markComplete(event) {
     event.preventDefault();
-    // let completedTask = event.currentTarget;
-    // completedTask.collection.get(id);
+    this.setState({completed: true});
     this.props.onMarkComplete();
   },
 
@@ -14,7 +19,7 @@ export default React.createClass({
       <li key={data.objectId}>
         <span className='title'>{data.title}</span>
         <button onClick={this.markComplete} 
-          className='remove' 
+          className='remove'
           id={data.objectId}>
           <i className='fa fa-close'/>
         </button>

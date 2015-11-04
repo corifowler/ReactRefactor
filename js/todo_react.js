@@ -3,8 +3,8 @@ import React from 'react';
 import {TodoModel} from './resources';
 import {TodoCollection} from './resources';
 
-import AddTask from './todo_input';
-import ToDoList from './todo_list';
+import {AddTask} from './views';
+import {ToDoList} from './views';
 
 export default React.createClass({
 
@@ -26,7 +26,10 @@ export default React.createClass({
               });
             }}/>
           <ToDoList
-            onMarkComplete={() => {}}/>
+            onMarkComplete={() => {
+              let status = completed ? 'undo' : 'remove';
+            }}
+            className={status}/>
         </main>
         <footer>
           <ClearButton 
