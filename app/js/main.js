@@ -86,10 +86,8 @@ var ToDoView = _react2['default'].createClass({
           } }),
         _react2['default'].createElement(_views.ToDoList, {
           items: todos.toJSON(),
-          onMarkComplete: function () {
-            var status = completed ? 'undo' : 'remove';
-          },
-          className: status })
+          onMarkComplete: function () {},
+          className: this.status })
       ),
       _react2['default'].createElement(
         'footer',
@@ -528,12 +526,13 @@ exports['default'] = _react2['default'].createClass({
   displayName: 'todo_list',
 
   getInitialState: function getInitialState() {
-    return { completed: false };
+    return { completed: false }, { status: 'remove' };
   },
 
-  markComplete: function markComplete(event) {
-    event.preventDefault();
+  markComplete: function markComplete() {
     this.setState({ completed: true });
+    var status = this.state.completed ? 'undo' : 'remove';
+    this.setState({ status: status });
     this.props.onMarkComplete();
   },
 
@@ -549,7 +548,7 @@ exports['default'] = _react2['default'].createClass({
       _react2['default'].createElement(
         'button',
         { onClick: this.markComplete,
-          className: 'remove',
+          className: this.state.status,
           id: data.objectId },
         _react2['default'].createElement('i', { className: 'fa fa-close' })
       )

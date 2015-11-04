@@ -40,10 +40,8 @@ let ToDoView = React.createClass ({
             }}/>
           <ToDoList
             items={todos.toJSON()}
-            onMarkComplete={() => {
-              let status = completed ? 'undo' : 'remove';
-            }}
-            className={status}/>
+            onMarkComplete={() => {}}
+            className={this.status}/>
         </main>
         <footer>
           <ClearButton 

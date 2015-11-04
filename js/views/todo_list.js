@@ -4,13 +4,15 @@ export default React.createClass({
 
   getInitialState() {
     return (
-      {completed: false}
+      {completed: false},
+      {status: 'remove'}
     );
   },
 
-  markComplete(event) {
-    event.preventDefault();
+  markComplete() {
     this.setState({completed: true});
+    let status = this.state.completed ? 'undo' : 'remove';
+    this.setState({status});
     this.props.onMarkComplete();
   },
 
@@ -19,7 +21,7 @@ export default React.createClass({
       <li key={data.objectId}>
         <span className='title'>{data.title}</span>
         <button onClick={this.markComplete} 
-          className='remove'
+          className={this.state.status}
           id={data.objectId}>
           <i className='fa fa-close'/>
         </button>
