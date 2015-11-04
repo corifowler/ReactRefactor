@@ -5,25 +5,35 @@ export default React.createClass({
   getInitialState() {
     return (
       {completed: false},
-      {status: 'remove'}
+      {buttonStatus: 'remove'},
+      {spanStatus: 'title '},
+      {iconStatus: 'fa fa-close'}
     );
   },
 
   markComplete() {
+    
     this.setState({completed: true});
-    let status = this.state.completed ? 'undo' : 'remove';
-    this.setState({status});
-    this.props.onMarkComplete();
+
+    let buttonStatus = this.state.completed ? 'undo' : 'remove';
+    let spanStatus = this.state.completed ? 'title complete' : 'title';
+    let iconStatus = this.state.completed ? 'fa fa-undo' : 'fa fa-close';
+    this.setState({buttonStatus},{spanStatus},{iconStatus});
+    this.props.onMarkComplete(
+      this.state.buttonStatus,
+      this.state.spanStatus,
+      this.state.iconStatus
+    );
   },
 
   processData(data) {
     return (
       <li key={data.objectId}>
-        <span className='title'>{data.title}</span>
+        <span className={this.state.spanStatus}>{data.title}</span>
         <button onClick={this.markComplete} 
-          className={this.state.status}
+          className={this.state.buttonStatus}
           id={data.objectId}>
-          <i className='fa fa-close'/>
+          <i className={this.state.iconStatus}/>
         </button>
       </li>
     );

@@ -86,8 +86,7 @@ var ToDoView = _react2['default'].createClass({
           } }),
         _react2['default'].createElement(_views.ToDoList, {
           items: todos.toJSON(),
-          onMarkComplete: function () {},
-          className: this.status })
+          onMarkComplete: function (btn, span, icon) {} })
       ),
       _react2['default'].createElement(
         'footer',
@@ -526,14 +525,18 @@ exports['default'] = _react2['default'].createClass({
   displayName: 'todo_list',
 
   getInitialState: function getInitialState() {
-    return { completed: false }, { status: 'remove' };
+    return { completed: false }, { buttonStatus: 'remove' }, { spanStatus: 'title ' }, { iconStatus: 'fa fa-close' };
   },
 
   markComplete: function markComplete() {
+
     this.setState({ completed: true });
-    var status = this.state.completed ? 'undo' : 'remove';
-    this.setState({ status: status });
-    this.props.onMarkComplete();
+
+    var buttonStatus = this.state.completed ? 'undo' : 'remove';
+    var spanStatus = this.state.completed ? 'title complete' : 'title';
+    var iconStatus = this.state.completed ? 'fa fa-undo' : 'fa fa-close';
+    this.setState({ buttonStatus: buttonStatus }, { spanStatus: spanStatus }, { iconStatus: iconStatus });
+    this.props.onMarkComplete(this.state.buttonStatus, this.state.spanStatus, this.state.iconStatus);
   },
 
   processData: function processData(data) {
@@ -542,15 +545,15 @@ exports['default'] = _react2['default'].createClass({
       { key: data.objectId },
       _react2['default'].createElement(
         'span',
-        { className: 'title' },
+        { className: this.state.spanStatus },
         data.title
       ),
       _react2['default'].createElement(
         'button',
         { onClick: this.markComplete,
-          className: this.state.status,
+          className: this.state.buttonStatus,
           id: data.objectId },
-        _react2['default'].createElement('i', { className: 'fa fa-close' })
+        _react2['default'].createElement('i', { className: this.state.iconStatus })
       )
     );
   },
