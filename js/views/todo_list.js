@@ -12,18 +12,15 @@ export default React.createClass({
   },
 
   markComplete() {
-    
+    event.preventDefault();
+
     this.setState({completed: true});
 
     let buttonStatus = this.state.completed ? 'undo' : 'remove';
     let spanStatus = this.state.completed ? 'title complete' : 'title';
     let iconStatus = this.state.completed ? 'fa fa-undo' : 'fa fa-close';
     this.setState({buttonStatus},{spanStatus},{iconStatus});
-    this.props.onMarkComplete(
-      this.state.buttonStatus,
-      this.state.spanStatus,
-      this.state.iconStatus
-    );
+    this.props.onMarkComplete();
   },
 
   processData(data) {

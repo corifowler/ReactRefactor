@@ -86,7 +86,12 @@ var ToDoView = _react2['default'].createClass({
           } }),
         _react2['default'].createElement(_views.ToDoList, {
           items: todos.toJSON(),
-          onMarkComplete: function (btn, span, icon) {} })
+          buttonClass: this.buttonStatus,
+          spanClass: this.spanStatus,
+          iconClass: this.iconStatus,
+          onMarkComplete: function (btn, span, icon) {
+            return btn, span, icon;
+          } })
       ),
       _react2['default'].createElement(
         'footer',
@@ -529,6 +534,7 @@ exports['default'] = _react2['default'].createClass({
   },
 
   markComplete: function markComplete() {
+    event.preventDefault();
 
     this.setState({ completed: true });
 
@@ -536,7 +542,7 @@ exports['default'] = _react2['default'].createClass({
     var spanStatus = this.state.completed ? 'title complete' : 'title';
     var iconStatus = this.state.completed ? 'fa fa-undo' : 'fa fa-close';
     this.setState({ buttonStatus: buttonStatus }, { spanStatus: spanStatus }, { iconStatus: iconStatus });
-    this.props.onMarkComplete(this.state.buttonStatus, this.state.spanStatus, this.state.iconStatus);
+    this.props.onMarkComplete();
   },
 
   processData: function processData(data) {
