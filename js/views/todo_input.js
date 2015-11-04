@@ -9,7 +9,8 @@ export default React.createClass({
   render() {
     return (
       <form className='todo-add'>
-        <input type='text' name='title' placeholder='Add something'/>
+        <input type='text' className='todo-title' 
+        name='title' placeholder='Add something'/>
         <button onClick={this.submitItem}><i className='fa fa-plus'/></button>
       </form>
     );

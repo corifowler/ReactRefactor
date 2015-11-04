@@ -5,6 +5,7 @@ import {TodoCollection} from './resources';
 
 import {AddTask} from './views';
 import {ToDoList} from './views';
+import {ClearButton} from './views';
 
 export default React.createClass({
 
@@ -26,6 +27,7 @@ export default React.createClass({
               });
             }}/>
           <ToDoList
+            items={todos.toJSON()}
             onMarkComplete={() => {
               let status = completed ? 'undo' : 'remove';
             }}

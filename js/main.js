@@ -6,21 +6,57 @@ import moment from 'moment';
 import Backbone from 'backbone';
 
 import './ajax_setup';
-import ToDoView from './todo_react';
+
+import {TodoModel} from './resources';
 import {TodoCollection} from './resources';
+
+import {AddTask} from './views';
+import {ToDoList} from './views';
+import {ClearButton} from './views';
+
 
 let el = document.querySelector('.app');
 
 let todos = new TodoCollection();
 
-todos.fetch().then(() => {  
-  ReactDom.render(<ToDoView/>, this.el);
+let ToDoView = React.createClass ({
+
+  render() {
+    return (
+      <div className='wrapper'>
+        <header>
+          <h1>Things To Do</h1>
+        </header>
+        <main>
+          <AddTask
+            onAddClick={() => {
+              let newTask = document.querySelector('.todo-title').value;
+              let taskModel = new TodoModel({
+                title: newTask
+              });
+              taskModel.save().then(() => {
+                location.reload(true);
+              });
+            }}/>
+          <ToDoList
+            items={todos.toJSON()}
+            onMarkComplete={() => {
+              let status = completed ? 'undo' : 'remove';
+            }}
+            className={status}/>
+        </main>
+        <footer>
+          <ClearButton 
+            onClearComplete={() => alert('want to clear')}/>
+        </footer>
+      </div>
+    );
+  }
 });
 
-
-
-
-
+todos.fetch().then(() => {  
+  ReactDom.render(<ToDoView/>, el);
+});
 
 
 
